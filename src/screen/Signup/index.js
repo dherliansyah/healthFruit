@@ -6,6 +6,8 @@ import { TextInput, Button } from 'react-native-paper';
 
 const Login = ({ navigation }) => {
 	const inputPassword = React.useRef();
+	const nohandphone = React.useRef();
+	const [ handphone, sethandphone ] = React.useState('');
 	const [ email, setEmail ] = React.useState('');
 	const [ password, setPassword ] = React.useState('');
 	return (
@@ -13,7 +15,7 @@ const Login = ({ navigation }) => {
 			<Image source={logoLogin} style={styles.logoLogin} />
 
 			<View style={styles.paddingLogin}>
-				<Text style={styles.textLoginHeader}>Login</Text>
+				<Text style={styles.textLoginHeader}>Sign Up</Text>
 				<View>
 					<TextInput
 						style={styles.inputback}
@@ -21,9 +23,20 @@ const Login = ({ navigation }) => {
 						returnKeyType="next"
 						autoCapitalize="none"
 						placeholder="Enter your E-mail"
-						onSubmitEditing={() => inputPassword.current.focus()}
+						onSubmitEditing={() => nohandphone.current.focus()}
 						value={email}
 						onChangeText={(text) => setEmail(text)}
+					/>
+					<TextInput
+						ref={nohandphone}
+						style={styles.inputback}
+						label="No. Handphone"
+						returnKeyType="next"
+						autoCapitalize="none"
+						placeholder="Enter your no handphone"
+						onSubmitEditing={() => inputPassword.current.focus()}
+						value={handphone}
+						onChangeText={(text) => sethandphone(text)}
 					/>
 					<TextInput
 						ref={inputPassword}
@@ -39,21 +52,10 @@ const Login = ({ navigation }) => {
 					/>
 				</View>
 			</View>
-			<View style={styles.Forgot}>
-				<Text style={styles.textForgot} onPress={() => navigation.navigate('ForgotPassword')}>
-					Forgot Password?
-				</Text>
-			</View>
 			<View style={styles.paddingLogin}>
-				<Button style={styles.buttonLogin} mode="contained" onPress={() => console.log()}>
-					Login
+				<Button style={styles.buttonLogin} mode="contained" onPress={() => navigation.navigate('Login')}>
+					Sign Up
 				</Button>
-				<Text style={styles.loginText}>
-					Don't have an account?{' '}
-					<Text style={styles.loginSignup} onPress={() => navigation.navigate('Signup')}>
-						Signup
-					</Text>
-				</Text>
 			</View>
 		</ScrollView>
 	);
@@ -79,14 +81,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fcfcfc',
 		marginTop: 20
 	},
-	textForgot: {
-		fontSize: 14,
-		marginVertical: 15
-	},
-	Forgot: {
-		paddingHorizontal: 20,
-		alignItems: 'flex-end'
-	},
 	buttonLogin: {
 		backgroundColor: '#53B175',
 		color: '#ffffff',
@@ -95,15 +89,5 @@ const styles = StyleSheet.create({
 		paddingVertical: 5,
 		borderRadius: 10,
 		fontWeight: 'bold'
-	},
-	loginSignup: {
-		fontWeight: 'bold',
-		fontSize: 14,
-		color: '#53B175'
-	},
-	loginText: {
-		fontSize: 14,
-		marginTop: 10,
-		textAlign: 'center'
 	}
 });
