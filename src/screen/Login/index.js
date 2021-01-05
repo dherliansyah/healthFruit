@@ -45,7 +45,7 @@ const Login = ({ navigation }) => {
 				</Text>
 			</View>
 			<View style={styles.paddingLogin}>
-				<Button style={styles.buttonLogin} mode="contained" onPress={() => console.log()}>
+				<Button style={styles.buttonLogin} mode="contained" onPress={() => navigation.navigate('Home')}>
 					Login
 				</Button>
 				<Text style={styles.loginText}>
